@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+<argument name="data" xsi:type="array">
+    <item name="js_config" xsi:type="array">
+        <item name="provider" xsi:type="string">events_grid_edit.events_grid_edit_data_source</item>
+        <item name="deps" xsi:type="string">events_grid_edit.events_grid_edit_data_source</item>
+    </item>
+    <item name="label" xsi:type="string" translate="true">Event Form</item>
+    <item name="config" xsi:type="array">
+        <item name="dataScope" xsi:type="string">data</item>
+        <item name="namespace" xsi:type="string">event_form</item>
+    </item>
+    <item name="template" xsi:type="string">templates/form/collapsible</item>
+    <item name="buttons" xsi:type="array">
+        <item name="back" xsi:type="string">Vaimo\Events\Block\Adminhtml\Events\Buttons\BackButton</item>
+        <!--<item name="delete" xsi:type="string">Vaimo\Events\Block\Adminhtml\Post\Edit\Buttons\DeleteButton</item>-->
+        <item name="reset" xsi:type="string">Vaimo\Events\Block\Adminhtml\Events\Buttons\ResetButton</item>
+        <item name="save" xsi:type="string">Vaimo\Events\Block\Adminhtml\Events\Buttons\SaveButton</item>
+        <!--<item name="save_and_continue" xsi:type="string">Vaimo\Events\Block\Adminhtml\Post\Edit\Buttons\SaveAndContinue</item>-->
+    </item>
+</argument>
+<dataSource name="events_grid_edit_data_source">
+    <argument name="dataProvider" xsi:type="configurableObject">
+        <argument name="class" xsi:type="string">Vaimo\Events\DataProvider\DataProvider</argument>
+        <argument name="name" xsi:type="string">events_grid_edit_data_source</argument>
+        <argument name="primaryFieldName" xsi:type="string">vaimo_events_event_id</argument>
+        <argument name="requestFieldName" xsi:type="string">id</argument>
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="submit_url" xsi:type="url" path="events/index/save"/>
+            </item>
+        </argument>
+    </argument>
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+        </item>
+    </argument>
+</dataSource>
+<fieldset name="form_details">
+    <argument name="data" xsi:type="array">
+        <item name="config" xsi:type="array">
+            <item name="label" xsi:type="string" translate="true">Event Form Details</item>
+        </item>
+    </argument>
+    <field name="vaimo_events_event_id">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="visible" xsi:type="boolean">false</item>
+                <item name="dataType" xsi:type="string">text</item>
+                <item name="label" xsi:type="string" translate="true">Event ID</item>
+                <item name="formElement" xsi:type="string">input</item>
+                <item name="source" xsi:type="string">form_details</item>
+                <item name="dataScope" xsi:type="string">vaimo_events_event_id</item>
+            </item>
+        </argument>
+    </field>
+    <!-- This field has data type 'text' and standard 'input' form element and looks like input -->
+    <field name="title">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Title</item>
+                <item name="visible" xsi:type="boolean">true</item>
+                <item name="dataType" xsi:type="string">text</item>
+                <item name="formElement" xsi:type="string">input</item>
+                <item name="source" xsi:type="string">form_details</item>
+            </item>
+        </argument>
+    </field>
+
+
+    <!-- This field has data type 'text' and standard 'input' form element and looks like input -->
+    <field name="description">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Description</item>
+                <item name="visible" xsi:type="boolean">true</item>
+                <item name="dataType" xsi:type="string">text</item>
+                <item name="formElement" xsi:type="string">input</item>
+                <item name="source" xsi:type="string">form_details</item>
+            </item>
+        </argument>
+    </field>
+
+    <!-- This field has data type 'text' and standard 'input' form element and looks like input -->
+    <field name="event_time">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Event Time</item>
+                <item name="visible" xsi:type="boolean">true</item>
+                <item name="formElement" xsi:type="string">date</item>
+                <item name="source" xsi:type="string">form_details</item>
+            </item>
+        </argument>
+    </field>
+
+    <field name="image" formElement="fileUploader">
+        <settings>
+            <notice translate="true">Allowed file types: jpg, jpeg, gif, png.</notice>
+            <label translate="true">Image</label>
+            <componentType>fileUploader</componentType>
+        </settings>
+        <formElements>
+            <fileUploader>
+                <settings>
+                    <allowedExtensions>jpg jpeg gif png</allowedExtensions>
+                    <maxFileSize>10240000</maxFileSize>
+                    <placeholderType>image</placeholderType>
+                    <previewTmpl>Vaimo_Events/image-preview</previewTmpl>
+                    <uploaderConfig>
+                        <param xsi:type="string" name="url">events/index/upload</param>
+                    </uploaderConfig>
+                </settings>
+            </fileUploader>
+        </formElements>
+    </field>
+
+    <!--<field name="image">-->
+        <!--<argument name="data" xsi:type="array">-->
+            <!--<item name="config" xsi:type="array">-->
+                <!--<item name="dataType" xsi:type="string">string</item>-->
+                <!--<item name="source" xsi:type="string">form_details</item>-->
+                <!--<item name="label" xsi:type="string" translate="true">Image</item>-->
+                <!--<item name="visible" xsi:type="boolean">true</item>-->
+                <!--<item name="formElement" xsi:type="string">fileUploader</item>-->
+                <!--<item name="elementTmpl" xsi:type="string">ui/form/element/uploader/uploader</item>-->
+                <!--<item name="previewTmpl" xsi:type="string">Vaimo_Events/image-preview</item>-->
+                <!--<item name="validation" xsi:type="array">-->
+                    <!--<item name="required-entry" xsi:type="boolean">false</item>-->
+                <!--</item>-->
+                <!--<item name="uploaderConfig" xsi:type="array">-->
+                    <!--<item name="url" xsi:type="url" path="events/index/upload"/>-->
+                <!--</item>-->
+            <!--</item>-->
+        <!--</argument>-->
+    <!--</field>-->
+
+    <field name="is_active" >
+        <argument name="data" xsi:type="array">
+            <item name="options" xsi:type="object">Magento\Config\Model\Config\Source\Yesno</item>
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string">Is active?</item>
+                <item name="visible" xsi:type="boolean">true</item>
+                <item name="dataType" xsi:type="string">select</item>
+                <item name="formElement" xsi:type="string">select</item>
+                <item name="source" xsi:type="string">is_active</item>
+                <item name="require" xsi:type="boolean">true</item>
+                <item name="dataScope" xsi:type="string">is_active</item>
+            </item>
+        </argument>
+    </field>
+</fieldset>
+</form>

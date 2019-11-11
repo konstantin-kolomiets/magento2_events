@@ -1,0 +1,31 @@
+<?php
+/**
+ * @var $block Vaimo\Events\Block\Index\Index;
+ */
+?>
+<?php $eventsCollection = $block->getEventsCollection(); ?>
+<div class="events-section">
+    <div class="section-title">__('Events')</div>
+
+    <div class="events">
+        <?php foreach ($eventsCollection as $event) { ?>
+<!--                --><?php // echo "<pre>"; print_r($event->debug()); "</pre>"; ?>
+            <?php if ($event->getIsActive()) : ?>
+                <div class="event">
+                    <div class="event-img">
+                        <?php if ($event->getImage()) : ?>
+                            <img class="image"
+                                 src="<?= $block->getImageUrl($event->getImage()); ?>" alt="Event" />
+                        <?php else : ?>
+                            <img class="image"
+                                 src="<?= $block->getViewFileUrl('Vaimo_Events::images/banner_img1.jpg'); ?>" alt="Event" />
+                        <?php endif; ?>
+                    </div>
+                    <div class="event-title"><?= $event->getTitle(); ?></div>
+                    <div class="event-event-time"><?= $event->getEventTime(); ?></div>
+                    <div class="event-description"><?= $event->getDescription(); ?></div>
+                </div>
+            <?php endif; ?>
+        <?php } ?>
+    </div>
+</div>

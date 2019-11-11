@@ -1,0 +1,20 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Vaimo_Events::vaimo"
+             title="Vaimo"
+             translate="title"
+             module="Vaimo_Events"
+             sortOrder="20"
+             dependsOnModule="Vaimo_Events"
+             resource="Vaimo_Events::vaimo"/>
+
+        <add id="Vaimo_Events::vaimo_events"
+             title="Events"
+             translate="title"
+             module="Vaimo_Events"
+             sortOrder="10"
+             parent="Vaimo_Events::vaimo"
+             action="events"
+             resource="Vaimo_Events::vaimo"/>
+    </menu>
+</config>
