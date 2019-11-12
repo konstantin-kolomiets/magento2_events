@@ -1,19 +1,18 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference for="Vaimo\Events\Api\Data\BaseEventsInterface"
-                type="Vaimo\Events\Model\BaseEvents" />
-    
+                type="Vaimo\Events\Model\BaseEvents"/>
+
     <preference for="Vaimo\Events\Api\BaseEventsRepositoryInterface"
-                type="Vaimo\Events\Model\BaseEventsRepository" />
+                type="Vaimo\Events\Model\BaseEventsRepository"/>
 
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
-        
         <arguments>
             <argument name="collections" xsi:type="array">
+                <item name="eventssubscriptions_grid_listing_data_source" xsi:type="string">Vaimo\Events\Model\ResourceModel\EventSubscriptions\Grid\Collection</item>
                 <item name="events_grid_listing_data_source" xsi:type="string">Vaimo\Events\Model\ResourceModel\Event\Grid\Collection</item>
             </argument>
         </arguments>
     </type>
-
     <type name="Vaimo\Events\Model\ImageUploader">
         <arguments>
             <argument name="baseTmpPath" xsi:type="string">events/tmp/icon</argument>

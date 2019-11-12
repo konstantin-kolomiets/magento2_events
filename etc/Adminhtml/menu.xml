@@ -16,5 +16,13 @@
              parent="Vaimo_Events::vaimo"
              action="events"
              resource="Vaimo_Events::vaimo"/>
+        <add id="Vaimo_Events::vaimo_subscriptions"
+             title="Subscriptions"
+             translate="title"
+             module="Vaimo_Events"
+             sortOrder="10"
+             parent="Vaimo_Events::vaimo"
+             action="events/eventssubscriptions/index"
+             resource="Vaimo_Events::vaimo"/>
     </menu>
 </config>
