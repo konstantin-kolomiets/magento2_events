@@ -4,6 +4,10 @@
 
     <preference for="Vaimo\Events\Api\BaseEventsRepositoryInterface"
                 type="Vaimo\Events\Model\BaseEventsRepository"/>
+    <preference for="Vaimo\Events\Api\SubsEventRepositoryInterface"
+                type="Vaimo\Events\Model\EventSubscriptionsRepository"/>
+    <preference for="Vaimo\Events\Api\Data\EventSubscriptionsInterface"
+                type="Vaimo\Events\Model\EventSubscriptions"/>
 
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
