@@ -5,7 +5,7 @@
 ?>
 <?php $eventsCollection = $block->getEventsCollection(); ?>
 <div class="events-section">
-    <div class="section-title">__('Events')</div>
+    <div class="section-title"><?php echo __('Events') ?></div>
 
     <div class="events">
         <?php foreach ($eventsCollection as $event) { ?>
@@ -24,8 +24,50 @@
                     <div class="event-title"><?= $event->getTitle(); ?></div>
                     <div class="event-event-time"><?= $event->getEventTime(); ?></div>
                     <div class="event-description"><?= $event->getDescription(); ?></div>
+                    <div class="event-action-wrapper">
+                        <a href="#" class="action primary js-modal-toggle">Sign up</a>
+                    </div>
                 </div>
             <?php endif; ?>
         <?php } ?>
     </div>
 </div>
+
+
+<div id="popup-modal">
+    <b> Hi I'm here.... </b>
+</div>
+
+<script>
+    require(
+        [
+            'jquery',
+            'Magento_Ui/js/modal/modal'
+        ],
+        function(
+            $,
+            modal
+        ) {
+            var options = {
+                type: 'popup',
+                responsive: true,
+                innerScroll: true,
+                title: 'popup modal title',
+                buttons: [{
+                    text: $.mage.__('Continue'),
+                    class: '',
+                    click: function () {
+                        this.closeModal();
+                    }
+                }]
+            };
+
+            var popup = modal(options, $('#popup-modal'));
+
+            $('.js-modal-toggle').on('click', function (event) {
+                event.preventDefault();
+                $('#popup-modal').modal('openModal');
+            });
+        }
+    );
+</script>
