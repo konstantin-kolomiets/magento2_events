@@ -48,7 +48,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
                 ],
                 'event id'
             )->addColumn(
-                EventSubscriptionsInterface::TABLE_NAME,
+                EventSubscriptionsInterface::FIELD_NAME,
                 Table::TYPE_TEXT,
                 255,
                 ['nullable' => false],
