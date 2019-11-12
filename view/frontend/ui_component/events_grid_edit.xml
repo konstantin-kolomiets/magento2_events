@@ -61,7 +61,7 @@
         </argument>
     </field>
 
-    <field name="firstname" formElement="input">
+    <field name="name" sortOrder="20" formElement="input">
         <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
                 <item name="source" xsi:type="string">form_details</item>
@@ -75,7 +75,7 @@
         </settings>
     </field>
 
-    <field name="telephone" formElement="input">
+    <field name="phone" sortOrder="30" formElement="input">
         <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
                 <item name="source" xsi:type="string">form_details</item>
@@ -84,6 +84,14 @@
         <settings>
             <dataType>text</dataType>
         </settings>
+    </field>
+
+    <field name="buttonSubmit" sortOrder="40" formElement="button" component="Vaimo_Events/js/view/element/buttonSubmit">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="title" xsi:type="string">Submit</item>
+            </item>
+        </argument>
     </field>
 </fieldset>
 </form>
