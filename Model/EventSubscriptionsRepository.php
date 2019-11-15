@@ -15,6 +15,7 @@ use Vaimo\Events\Model\ResourceModel\EventSubscriptions\CollectionFactory;
 use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
 use Magento\Framework\Api\Search\SearchResultInterface;
 
+
 class EventSubscriptionsRepository implements SubsEventRepositoryInterface
 {
     private $resourceModel;

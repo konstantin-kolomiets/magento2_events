@@ -5,8 +5,8 @@ define([
     ], function ($, uiRegistry, button) {
     'use strict';
 
-    var mydata = uiRegistry.get("events_grid_edit.events_grid_edit");
-    var mydataSource = uiRegistry.get("events_grid_edit.events_grid_edit_data_source");
+    var mydata = uiRegistry.get("events_form.events_form");
+    var mydataSource = uiRegistry.get("events_form.events_form_data_source");
     return button.extend({
          action: function () {
              mydata.validate();

@@ -4,38 +4,40 @@
  */
 ?>
 <?php $eventsCollection = $block->getEventsCollection(); ?>
-<div id="events-section" class="events-section">
-    <div class="section-title"><?php echo __('Events') ?></div>
+<?php if ($eventsCollection) : ?>
+    <div id="events-section" class="events-section">
+        <div class="section-title"><?php echo __('Events') ?></div>
 
-    <div class="events">
-        <?php foreach ($eventsCollection as $event) { ?>
-            <?php if ($event->getIsActive()) : ?>
-                <div class="event" data-id="<?= $event->getVaimoEventsEventId(); ?>">
-                    <div class="event-img">
-                        <?php if ($event->getImage()) : ?>
-                            <img class="image"
-                                 src="<?= $block->getImageUrl($event->getImage()); ?>" alt="Event" />
-                        <?php else : ?>
-                            <img class="image"
-                                 src="<?= $block->getViewFileUrl('Vaimo_Events::images/banner_img1.jpg'); ?>" alt="Event" />
-                        <?php endif; ?>
+        <div class="events">
+            <?php foreach ($eventsCollection as $event) { ?>
+                <?php if ($event->getIsActive()) : ?>
+                    <div class="event" data-id="<?= $event->getVaimoEventsEventId(); ?>">
+                        <div class="event-img">
+                            <?php if ($event->getImage()) : ?>
+                                <img class="image"
+                                     src="<?= $block->getImageUrl($event->getImage()); ?>" alt="Event" />
+                            <?php else : ?>
+                                <img class="image"
+                                     src="<?= $block->getViewFileUrl('Vaimo_Events::images/banner_img1.jpg'); ?>" alt="Event" />
+                            <?php endif; ?>
+                        </div>
+                        <div class="event-title"><?= $event->getTitle(); ?></div>
+                        <div class="event-event-time"><?= $event->getEventTime(); ?></div>
+                        <div class="event-description"><?= $event->getDescription(); ?></div>
+                        <div class="event-action-wrapper">
+                            <a href="#" class="action primary js-modal-toggle">Sign up</a>
+                        </div>
                     </div>
-                    <div class="event-title"><?= $event->getTitle(); ?></div>
-                    <div class="event-event-time"><?= $event->getEventTime(); ?></div>
-                    <div class="event-description"><?= $event->getDescription(); ?></div>
-                    <div class="event-action-wrapper">
-                        <a href="#" class="action primary js-modal-toggle">Sign up</a>
-                    </div>
-                </div>
-            <?php endif; ?>
-        <?php } ?>
+                <?php endif; ?>
+            <?php } ?>
+        </div>
     </div>
-</div>
 
-<script type="text/x-magento-init">
-{
-    "#events-section": {
-        "Vaimo_Events/js/modal/modal": {}
+    <script type="text/x-magento-init">
+    {
+        "#events-section": {
+            "Vaimo_Events/js/modal/modal": {}
+        }
     }
-}
-</script>
+    </script>
+<?php endif; ?>

@@ -5,7 +5,7 @@
         <referenceContainer name="content">
             <block class="Vaimo\Events\Block\Index\Index" name="events.main" template="Vaimo_Events::events_main.phtml"/>
             <container name="events.popup" htmlTag="div" htmlClass="events-popup" htmlId="events-popup">
-                <uiComponent name="events_grid_edit"/>
+                <uiComponent name="events_form"/>
             </container>
         </referenceContainer>
     </body>

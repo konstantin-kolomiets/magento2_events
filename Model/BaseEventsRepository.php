@@ -9,27 +9,28 @@
 namespace Vaimo\Events\Model;
 
 use Magento\Framework\Api\SearchCriteriaBuilderFactory;
+use Magento\Framework\Event\ManagerInterface as EventManager;
 
 class BaseEventsRepository implements \Vaimo\Events\Api\BaseEventsRepositoryInterface
 {
  
     private $baseEventsFactory;
- 
     private $resourceModel;
-
     private $collectionFactory;
- 
     private $collectionProcessor;
-  
     private $searchResultFactory;
+    private $eventManager;
+
 
     public function __construct(
+        EventManager $eventManager,
         \Vaimo\Events\Model\BaseEventsFactory $baseEventsFactory,
         \Vaimo\Events\Model\ResourceModel\Event $resourceModel,
         \Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface $collectionProcessor,
         \Vaimo\Events\Model\ResourceModel\Event\CollectionFactory $collectionFactory,
         \Magento\Framework\Api\Search\SearchResultInterfaceFactory $searchResult
     ) {
+        $this->eventManager        = $eventManager;
         $this->collectionProcessor = $collectionProcessor;
         $this->collectionFactory   = $collectionFactory;
         $this->resourceModel       = $resourceModel;
@@ -70,6 +71,7 @@ class BaseEventsRepository implements \Vaimo\Events\Api\BaseEventsRepositoryInte
     {
         try {
             $this->resourceModel->delete($baseEvents);
+            $this->eventManager->dispatch('vaimo_events_subscriptions_status_change', ['deleted_event' => $baseEvents]);
         } catch (\Exception $exception) {
             throw new \Magento\Framework\Exception\CouldNotDeleteException(__($exception->getMessage()));
         }

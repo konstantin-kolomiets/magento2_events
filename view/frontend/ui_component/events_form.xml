@@ -2,8 +2,8 @@
 <form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
 <argument name="data" xsi:type="array">
     <item name="js_config" xsi:type="array">
-        <item name="provider" xsi:type="string">events_grid_edit.events_grid_edit_data_source</item>
-        <item name="deps" xsi:type="string">events_grid_edit.events_grid_edit_data_source</item>
+        <item name="provider" xsi:type="string">events_form.events_form_data_source</item>
+        <item name="deps" xsi:type="string">events_form.events_form_data_source</item>
         <item name="component" xsi:type="string">Vaimo_Events/js/form/form</item>
     </item>
     <item name="label" xsi:type="string" translate="true">Event Form</item>
@@ -13,10 +13,10 @@
     </item>
     <item name="template" xsi:type="string">templates/form/collapsible</item>
 </argument>
-<dataSource name="events_grid_edit_data_source">
+<dataSource name="events_form_data_source">
     <argument name="dataProvider" xsi:type="configurableObject">
         <argument name="class" xsi:type="string">Vaimo\Events\DataProvider\Frontend\Form\DataProvider</argument>
-        <argument name="name" xsi:type="string">events_grid_edit_data_source</argument>
+        <argument name="name" xsi:type="string">events_form_data_source</argument>
         <argument name="primaryFieldName" xsi:type="string">vaimo_events_event_id</argument>
         <argument name="requestFieldName" xsi:type="string">id</argument>
         <argument name="data" xsi:type="array">

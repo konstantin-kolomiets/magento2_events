@@ -22,7 +22,9 @@ class Save extends AbstractEvent
             $formData = $this->getRequest()->getParam('event');
             if (empty($formData)) {
                 $formData = $this->getRequest()->getParams();
-                $formData['image'] = $formData['image'][0]['name'];
+                if(isset($formData['image'][0])) {
+                    $formData['image'] = $formData['image'][0]['name'];
+                }
             }
             if(!empty($formData[EventsInterface::FIELD_ID])) {
                 $id = $formData[EventsInterface::FIELD_ID];
@@ -46,17 +48,6 @@ class Save extends AbstractEvent
                 : $this->_redirect('*/*/edit');
         }
         return $this->doRefererRedirect();
-    }
-
-    public function _filterEventsGroupData(array $rawData)
-    {
-        $data = $rawData;
-        if (isset($data['image'][0]['name'])) {
-            $data['image'] = $data['image'][0]['name'];
-        } else {
-            $data['image'] = null;
-        }
-        return $data;
     }
 
 }
