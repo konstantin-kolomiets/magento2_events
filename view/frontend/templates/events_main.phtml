@@ -4,14 +4,13 @@
  */
 ?>
 <?php $eventsCollection = $block->getEventsCollection(); ?>
-<div class="events-section">
+<div id="events-section" class="events-section">
     <div class="section-title"><?php echo __('Events') ?></div>
 
     <div class="events">
         <?php foreach ($eventsCollection as $event) { ?>
-<!--                --><?php // echo "<pre>"; print_r($event->debug()); "</pre>"; ?>
             <?php if ($event->getIsActive()) : ?>
-                <div class="event">
+                <div class="event" data-id="<?= $event->getVaimoEventsEventId(); ?>">
                     <div class="event-img">
                         <?php if ($event->getImage()) : ?>
                             <img class="image"
@@ -34,10 +33,6 @@
 </div>
 
 
-<div id="popup-modal">
-    <b> Hi I'm here.... </b>
-</div>
-
 <script>
     require(
         [
@@ -52,21 +47,30 @@
                 type: 'popup',
                 responsive: true,
                 innerScroll: true,
-                title: 'popup modal title',
+                modalClass: 'events-modal',
                 buttons: [{
                     text: $.mage.__('Continue'),
-                    class: '',
+                    class: 'hidden',
                     click: function () {
                         this.closeModal();
                     }
                 }]
             };
 
-            var popup = modal(options, $('#popup-modal'));
+            var popup = modal(options, $('.events-popup')),
+                eventBlock = null,
+                eventID = null,
+                eventName = '';
 
-            $('.js-modal-toggle').on('click', function (event) {
-                event.preventDefault();
-                $('#popup-modal').modal('openModal');
+            $('.js-modal-toggle').on('click', function (e) {
+                e.preventDefault();
+                eventBlock = this.closest('.event');
+                eventID = $(eventBlock).data('id');
+                eventName = $(eventBlock).find('.event-title').text();
+
+                $('.events-popup input[name=vaimo_events_event_id]').attr('value', eventID).change();
+                $('.events-popup input[name=event_name]').attr('value', eventName);
+                $('.events-popup').modal('openModal');
             });
         }
     );

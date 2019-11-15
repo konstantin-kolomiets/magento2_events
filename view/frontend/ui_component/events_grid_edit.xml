@@ -4,6 +4,7 @@
     <item name="js_config" xsi:type="array">
         <item name="provider" xsi:type="string">events_grid_edit.events_grid_edit_data_source</item>
         <item name="deps" xsi:type="string">events_grid_edit.events_grid_edit_data_source</item>
+        <item name="component" xsi:type="string">Vaimo_Events/js/form/form</item>
     </item>
     <item name="label" xsi:type="string" translate="true">Event Form</item>
     <item name="config" xsi:type="array">
@@ -14,13 +15,13 @@
 </argument>
 <dataSource name="events_grid_edit_data_source">
     <argument name="dataProvider" xsi:type="configurableObject">
-        <argument name="class" xsi:type="string">Vaimo\Events\DataProvider\DataProvider</argument>
+        <argument name="class" xsi:type="string">Vaimo\Events\DataProvider\Frontend\Form\DataProvider</argument>
         <argument name="name" xsi:type="string">events_grid_edit_data_source</argument>
         <argument name="primaryFieldName" xsi:type="string">vaimo_events_event_id</argument>
         <argument name="requestFieldName" xsi:type="string">id</argument>
         <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
-                <item name="submit_url" xsi:type="url" path="events/index/save"/>
+                <item name="submit_url" xsi:type="url" path="frontend/events/frontsave"/>
             </item>
         </argument>
     </argument>
@@ -33,49 +34,36 @@
 <fieldset name="form_details">
     <argument name="data" xsi:type="array">
         <item name="config" xsi:type="array">
-            <item name="label" xsi:type="string" translate="true">Event Form Details</item>
+            <item name="label" xsi:type="string" translate="true">Event Form</item>
         </item>
     </argument>
-    <field name="vaimo_events_event_id">
-        <argument name="data" xsi:type="array">
-            <item name="config" xsi:type="array">
-                <item name="visible" xsi:type="boolean">false</item>
-                <item name="dataType" xsi:type="string">text</item>
-                <item name="label" xsi:type="string" translate="true">Event ID</item>
-                <item name="formElement" xsi:type="string">input</item>
-                <item name="source" xsi:type="string">form_details</item>
-                <item name="dataScope" xsi:type="string">vaimo_events_event_id</item>
-            </item>
-        </argument>
-    </field>
-    <!-- This field has data type 'text' and standard 'input' form element and looks like input -->
-    <field name="title">
-        <argument name="data" xsi:type="array">
-            <item name="config" xsi:type="array">
-                <item name="label" xsi:type="string" translate="true">Title</item>
-                <item name="visible" xsi:type="boolean">true</item>
-                <item name="dataType" xsi:type="string">text</item>
-                <item name="formElement" xsi:type="string">input</item>
-                <item name="source" xsi:type="string">form_details</item>
-            </item>
-        </argument>
-    </field>
-
-    <field name="name" sortOrder="20" formElement="input">
+    <field name="vaimo_events_event_id" formElement="hidden">
         <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
                 <item name="source" xsi:type="string">form_details</item>
             </item>
         </argument>
         <settings>
+            <dataType>text</dataType>
+        </settings>
+    </field>
+
+    <field name="name" sortOrder="10" formElement="input">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="source" xsi:type="string">form_details</item>
+            </item>
+        </argument>
+        <settings>
+            <dataType>text</dataType>
+            <placeholder translate="true">Name</placeholder>
             <validation>
-                <rule name="required-entry" xsi:type="boolean">true</rule>
+                <rule xsi:type="string" name="required-entry">string</rule>
             </validation>
-            <dataType>text</dataType>
         </settings>
     </field>
 
-    <field name="phone" sortOrder="30" formElement="input">
+    <field name="phone" sortOrder="20" formElement="input">
         <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
                 <item name="source" xsi:type="string">form_details</item>
@@ -83,10 +71,15 @@
         </argument>
         <settings>
             <dataType>text</dataType>
+            <placeholder translate="true">Phone</placeholder>
+            <validation>
+                <rule xsi:type="boolean" name="validate-number">true</rule>
+                <rule xsi:type="boolean" name="required-entry">true</rule>
+            </validation>
         </settings>
     </field>
 
-    <field name="buttonSubmit" sortOrder="40" formElement="button" component="Vaimo_Events/js/view/element/buttonSubmit">
+    <field name="buttonSubmit" sortOrder="30" formElement="button" component="Vaimo_Events/js/form/components/button">
         <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
                 <item name="title" xsi:type="string">Submit</item>

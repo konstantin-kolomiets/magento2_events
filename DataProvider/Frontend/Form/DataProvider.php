@@ -36,7 +36,7 @@ class DataProvider extends AbstractDataProvider
     public function getData()
     {
         $session = $this->sessionFactory->create();
-        if ($session->getCustomer()->getName()) {
+        if ($session->getCustomer()->getId()) {
             $model = $this->modelFactory->create();
             $model->setName($session->getCustomer()->getName());
             if ($session->getCustomer()->getDefaultShippingAddress()) {
