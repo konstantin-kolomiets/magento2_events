@@ -38,8 +38,6 @@ define([
              } else {
                  mydata.focusInvalid();
              }
-
-
          }
     });
 });
